@@ -1,0 +1,138 @@
+'use client';
+
+import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+import { useEffect, useRef } from 'react';
+import * as d3 from 'd3';
+
+// Disable static generation for this page
+export const dynamic = 'force-dynamic';
+
+type AnalyticsDatum = { label: string; value: number };
+
+type AnalyticsResponse = {
+  analytics: AnalyticsDatum[];
+  aiPrediction?: string;
+};
+
+function useAnalyticsData() {
+  return useQuery<AnalyticsResponse>({
+    queryKey: ['analytics'],
+    queryFn: async () => {
+      const res = await fetch('/api/analytics');
+      if (!res.ok) throw new Error('Failed to fetch analytics');
+      return res.json();
+    },
+  });
+}
+
+type SentimentScore = { label: string; score: number };
+
+type SentimentResponse = { scores: SentimentScore[] };
+
+function useSentimentData() {
+  return useQuery<SentimentResponse>({
+    queryKey: ['sentiment'],
+    queryFn: async () => {
+      const res = await fetch('/api/sentiment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer placeholder' },
+        body: JSON.stringify({ texts: ['Great post!', 'Not sure about this', 'Loved it'] }),
+      });
+      if (!res.ok) throw new Error('Failed to fetch sentiment');
+      return res.json();
+    },
+  });
+}
+
+function AnalyticsChart({ data }: { data: AnalyticsDatum[] }) {
+  const ref = useRef<SVGSVGElement>(null);
+  useEffect(() => {
+    if (!data.length || !ref.current) return;
+    const svg = d3.select(ref.current);
+    svg.selectAll('*').remove();
+    const width = 400, height = 200;
+    svg.attr('width', width).attr('height', height);
+    const x = d3.scaleBand().domain(data.map(d => d.label)).range([0, width]).padding(0.2);
+    const y = d3.scaleLinear().domain([0, d3.max(data, d => d.value) || 1]).range([height, 0]);
+    svg.append('g').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x));
+    svg.append('g').call(d3.axisLeft(y));
+    svg.selectAll('.bar')
+      .data(data)
+      .enter()
+      .append('rect')
+      .attr('class', 'bar')
+      .attr('x', d => (x(d.label) ?? 0))
+      .attr('y', d => y(d.value))
+      .attr('width', x.bandwidth())
+      .attr('height', d => height - y(d.value))
+      .attr('fill', '#2563eb');
+  }, [data]);
+  return <svg ref={ref} role="img" aria-label="Analytics Chart" tabIndex={0} />;
+}
+
+function SentimentChart({ scores }: { scores: SentimentScore[] }) {
+  const ref = useRef<SVGSVGElement>(null);
+  useEffect(() => {
+    if (!scores.length || !ref.current) return;
+    const svg = d3.select(ref.current);
+    svg.selectAll('*').remove();
+    const width = 400, height = 200;
+    svg.attr('width', width).attr('height', height);
+    const x = d3.scaleBand().domain(scores.map(s => s.label)).range([0, width]).padding(0.2);
+    const y = d3.scaleLinear().domain([0, 1]).range([height, 0]);
+    svg.append('g').attr('transform', `translate(0,${height})`).call(d3.axisBottom(x));
+    svg.append('g').call(d3.axisLeft(y));
+    svg.selectAll('.bar')
+      .data(scores)
+      .enter()
+      .append('rect')
+      .attr('class', 'bar')
+      .attr('x', d => (x(d.label) ?? 0))
+      .attr('y', d => y(d.score))
+      .attr('width', x.bandwidth())
+      .attr('height', d => height - y(d.score))
+      .attr('fill', '#16a34a');
+  }, [scores]);
+  return <svg ref={ref} role="img" aria-label="Sentiment Chart" tabIndex={0} />;
+}
+
+export default function AnalyticsPage() {
+  const { t } = useTranslation();
+  const { data, isLoading, error } = useAnalyticsData();
+  const { data: sentiment, isLoading: sLoading, error: sError } = useSentimentData();
+  const analytics = data?.analytics ?? [];
+  const aiPrediction = data?.aiPrediction || t('AI engagement prediction (placeholder)');
+  const sentimentScores: SentimentScore[] = sentiment?.scores ?? [];
+
+  return (
+    <div className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded shadow" aria-label={t('Analytics Dashboard')}>
+      <h1 className="text-2xl font-bold mb-4">{t('Analytics Dashboard')}</h1>
+      {isLoading ? (
+        <div className="animate-pulse h-8 bg-gray-200 rounded w-1/2 mb-2" />
+      ) : error ? (
+        <div className="text-red-600">{t('Failed to load analytics')}</div>
+      ) : (
+        <>
+          <div className="mb-6">
+            <AnalyticsChart data={analytics} />
+          </div>
+          <div className="mt-4 p-4 bg-blue-50 rounded">
+            <strong>{t('AI Engagement Prediction')}:</strong> {aiPrediction}
+          </div>
+        </>
+      )}
+
+      <h2 className="text-xl font-semibold mt-8 mb-2">{t('Audience Sentiment')}</h2>
+      {sLoading ? (
+        <div className="animate-pulse h-8 bg-gray-200 rounded w-1/2 mb-2" />
+      ) : sError ? (
+        <div className="text-red-600">{t('Failed to load sentiment')}</div>
+      ) : (
+        <div className="mb-6">
+          <SentimentChart scores={sentimentScores} />
+        </div>
+      )}
+    </div>
+  );
+}

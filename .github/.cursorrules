@@ -1,0 +1,178 @@
+project:
+  name: EchoGrow
+  codename: echogrow
+  version: v1.0
+  style: "SaaS AI-first, low-code + pro-code friendly, secure by default, observability first"
+  architecture: "Stateless microservices with modular TypeScript frontend/backend"
+  compliance: "GDPR, CCPA, SOC2-ready"
+author:
+  name: "Debottam Barman Roy"
+  role: "Senior Software Engineer / Founder"
+  contact: "youremail@example.com"
+
+rules:
+
+  workflow:
+    - rule: "Always propose small, PR-sized changes (≤400 LOC)."
+    - rule: "Plan → Implement → Test → Document for every feature."
+    - rule: "Prefer incremental delivery over large code dumps."
+    - rule: "Use conventional commits (feat/fix/docs/test/chore)."
+    - rule: "Require at least 1 code review per PR."
+    - rule: "Squash commits before merging."
+    - rule: "Create feature branches: feature/description or fix/description."
+    - rule: "Include changelog entry for every significant change."
+    - rule: "Document design trade-offs for complex features."
+
+  coding:
+    - rule: "All code must be written in TypeScript (frontend + backend)."
+    - rule: "Enable strict mode, ESLint, Prettier, no-explicit-any."
+    - rule: "Use dependency injection for testability."
+    - rule: "Prefer composition over inheritance."
+    - rule: "Async/await over Promises.then()."
+    - rule: "Shared utilities live in packages/common."
+    - rule: "Implement interfaces for all external dependencies."
+    - rule: "Semantic versioning for internal packages."
+    - rule: "Handle errors explicitly — no silent failures."
+    - rule: "Write self-documenting code with clear naming conventions."
+    - rule: "Ensure code is modular and easily extendable."
+
+  security:
+    - rule: "Validate all inputs (zod schemas)."
+    - rule: "Never log secrets, PII, or sensitive data."
+    - rule: "RBAC enforced with least privilege principle."
+    - rule: "Use JWT (RS256) with refresh rotation."
+    - rule: "Secrets managed via Vault or managed cloud secret store."
+    - rule: "Enforce HTTPS/TLS 1.3 for all external communications."
+    - rule: "Sanitize user inputs to prevent injection attacks."
+    - rule: "Use secure headers (HSTS, CSP, X-Frame-Options)."
+    - rule: "Regular security scans and dependency updates."
+    - rule: "mTLS for service-to-service communication (where applicable)."
+    - rule: "Implement rate limiting and brute-force protection."
+    - rule: "Perform periodic penetration testing."
+
+  observability:
+    - rule: "All APIs and workflows must emit OpenTelemetry traces."
+    - rule: "Propagate traceId in APIs, queues, and DB queries."
+    - rule: "Structured logging with correlation IDs."
+    - rule: "Define SLOs for all critical user journeys."
+    - rule: "Use health/readiness probes for services."
+    - rule: "Set up alerts with escalation paths."
+    - rule: "Monitor business + technical metrics."
+    - rule: "Centralized log aggregation is mandatory."
+    - rule: "Implement metrics dashboards for user engagement & AI performance."
+
+  ui:
+    - rule: "Next.js + Tailwind + shadcn/ui for UI."
+    - rule: "Keep UI low-code + pro-code friendly."
+    - rule: "WCAG 2.1 AA compliance for accessibility."
+    - rule: "Dark mode by default."
+    - rule: "Responsive design for all screens."
+    - rule: "React Query for fetching/caching."
+    - rule: "Implement loading states and fallback UI."
+    - rule: "i18n-ready (multi-language support)."
+    - rule: "Use skeleton loaders for async-heavy UI."
+    - rule: "Accessibility tests required for UI changes."
+    - rule: "Ensure keyboard and screen-reader navigation."
+
+  runtime:
+    - rule: "Services must be stateless and horizontally scalable."
+    - rule: "Resilience patterns: retries, backoff, circuit breaker."
+    - rule: "Use DLQs for failed async jobs."
+    - rule: "Auto-scaling enabled where possible."
+    - rule: "Graceful shutdown and resource cleanup required."
+    - rule: "Backup and recovery strategy mandatory."
+    - rule: "Implement monitoring for job queues and async workflows."
+
+  ci-cd:
+    - rule: "GitHub Actions for lint/test/build/release."
+    - rule: "Fail build on vulnerabilities (Trivy, npm audit)."
+    - rule: "Use semantic versioning and automated releases."
+    - rule: "Blue-green/canary deployment strategies."
+    - rule: "Rollback procedures defined for every deployment."
+    - rule: "Secrets managed securely in pipelines."
+    - rule: "Unit, integration, and e2e tests run in CI."
+    - rule: "Automatic changelog generation for releases."
+
+  testing:
+    - rule: "Unit tests required for all new code (Vitest)."
+    - rule: "Target ≥80% coverage (≥90% for critical paths)."
+    - rule: "Integration tests for all APIs."
+    - rule: "E2E tests for major user flows."
+    - rule: "Load/performance tests for scale-critical features."
+    - rule: "Contract tests for service integrations."
+    - rule: "Test data must be isolated and cleaned up."
+    - rule: "Use mocks for external APIs during testing."
+
+  data-management:
+    - rule: "Validate and sanitize all stored data."
+    - rule: "Encrypt data at rest and in transit."
+    - rule: "Implement data retention and archival policies."
+    - rule: "Transactions for critical writes."
+    - rule: "Backup and recovery strategy for all databases."
+    - rule: "Access controls for sensitive data."
+    - rule: "Version and migrate data safely."
+    - rule: "Anonymize user data for analytics."
+    - rule: "Ensure GDPR/CCPA compliance."
+
+  performance:
+    - rule: "Use caching (Redis/in-memory) where applicable."
+    - rule: "Optimize DB queries and add proper indexing."
+    - rule: "CDN for static assets."
+    - rule: "Async background jobs for long tasks."
+    - rule: "Monitor latency, throughput, and error rates."
+    - rule: "Load test before production rollout."
+    - rule: "Profile AI inference for latency and memory usage."
+
+  documentation:
+    - rule: "Every feature requires ADR + guide + example."
+    - rule: "API docs generated from OpenAPI."
+    - rule: "User guides and onboarding docs included."
+    - rule: "Architecture decisions must be documented."
+    - rule: "Maintain changelog and migration guides."
+    - rule: "Docs auto-deployed with Docusaurus/Next.js."
+    - rule: "Document AI model usage, version, and fallback strategy."
+
+  reliability:
+    - rule: "99.9% uptime target for core services."
+    - rule: "Define SLAs and error budgets."
+    - rule: "Regular chaos testing to verify resilience."
+    - rule: "Failover strategies must be tested."
+    - rule: "Implement monitoring for multi-region deployments."
+
+  release-management:
+    - rule: "Feature flags for gradual rollouts."
+    - rule: "Phased user rollout before full release."
+    - rule: "Rollback strategy documented for each release."
+    - rule: "Track feature adoption metrics post-release."
+
+  analytics:
+    - rule: "Track key product metrics (activation, retention, churn)."
+    - rule: "Respect user consent for analytics (opt-in by default)."
+    - rule: "Use event-based tracking with correlation IDs."
+    - rule: "All analytics must be anonymized and GDPR-compliant."
+    - rule: "Monitor AI-generated content usage and engagement."
+
+  legal-compliance:
+    - rule: "Comply with GDPR, CCPA, and local privacy laws."
+    - rule: "Consent banners for cookies & tracking."
+    - rule: "Provide clear user data export/delete options."
+    - rule: "No collection of sensitive categories without explicit opt-in."
+    - rule: "Document third-party dependencies for licensing."
+    - rule: "Review open-source licenses before integration."
+    - rule: "Maintain privacy policy and terms updated with features."
+
+  acceptance-checklist:
+    - "[ ] Code compiles & tests pass."
+    - "[ ] Linter & formatter pass."
+    - "[ ] Unit/integration tests added."
+    - "[ ] Observability hooks added."
+    - "[ ] Security posture validated."
+    - "[ ] Docs/examples updated."
+    - "[ ] Performance impact assessed."
+    - "[ ] Error handling implemented."
+    - "[ ] Logging & monitoring enabled."
+    - "[ ] Backward compatibility maintained."
+    - "[ ] Rollback plan ready."
+    - "[ ] Feature flags verified."
+    - "[ ] Multi-language support tested."
+    - "[ ] Legal/compliance requirements verified."

@@ -1,0 +1,21 @@
+{
+  "Schedule a Post": "Programar una publicación",
+  "Post content": "Contenido de la publicación",
+  "Date": "Fecha",
+  "Time": "Hora",
+  "Platform": "Plataforma",
+  "Generating...": "Generando...",
+  "Preview AI Caption": "Previsualizar subtítulo IA",
+  "Translating...": "Traduciendo...",
+  "Translate Caption": "Traducir subtítulo",
+  "Scheduling...": "Programando...",
+  "Scheduled Posts": "Publicaciones programadas",
+  "Calendar View": "Vista de calendario",
+  "Analytics Dashboard": "Panel de analítica",
+  "AI Engagement Prediction": "Predicción de engagement IA",
+  "Audience Sentiment": "Sentimiento de la audiencia",
+  "Failed to load analytics": "Error al cargar analítica",
+  "Failed to load sentiment": "Error al cargar sentimiento",
+  "Failed to load scheduled posts": "Error al cargar publicaciones programadas",
+  "Failed to generate caption": "Error al generar subtítulo"
+}

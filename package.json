@@ -1,0 +1,55 @@
+{
+  "name": "echogrow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tests/*"
+  ],
+  "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20",
+    "eslint": "^9",
+    "prettier": "^3.6.2",
+    "supertest": "^7.1.4",
+    "tailwindcss": "^4.1.13",
+    "ts-node": "^10.9.2",
+    "turbo": "^2.5.6",
+    "typescript": "^5",
+    "vitest": "^3.2.4"
+  },
+  "turbo": {
+    "pipeline": {
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          "dist/**",
+          ".next/**"
+        ]
+      },
+      "lint": {},
+      "test": {}
+    }
+  },
+  "dependencies": {
+    "@huggingface/inference": "^4.8.0",
+    "@supabase/supabase-js": "^2.57.4",
+    "@types/stripe": "^8.0.417",
+    "huggingface": "^1.4.0",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^3.3.2",
+    "stripe": "^18.5.0"
+  }
+}
