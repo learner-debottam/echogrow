@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-type ScheduledPost = { id: string; date: string; time: string; platform: string; content: string };
-
 export default function SchedulePostPage() {
   const [tweet, setTweet] = useState('');
   const [loading, setLoading] = useState(false);

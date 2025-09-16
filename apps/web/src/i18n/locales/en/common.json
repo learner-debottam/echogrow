@@ -87,5 +87,12 @@
   "Twitter": "Twitter",
   "LinkedIn": "LinkedIn",
   "GitHub": "GitHub",
-  "AI-powered social media management platform that helps creators and businesses grow their audience with intelligent content creation, scheduling, and analytics.": "AI-powered social media management platform that helps creators and businesses grow their audience with intelligent content creation, scheduling, and analytics."
+  "AI-powered social media management platform that helps creators and businesses grow their audience with intelligent content creation, scheduling, and analytics.": "AI-powered social media management platform that helps creators and businesses grow their audience with intelligent content creation, scheduling, and analytics.",
+  "Page not found": "Page not found",
+  "404_subtext": "Oops! The page you are looking for doesn’t exist or has been moved.",
+  "Go Home": "Go Home",
+  "Contact Support": "Contact Support",
+  "Something went wrong": "Something went wrong",
+  "500_subtext": "Our servers are having a hiccup. Please try again later.",
+  "Retry": "Retry"
 }

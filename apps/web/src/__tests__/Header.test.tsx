@@ -15,11 +15,12 @@ vi.mock('next/link', () => ({
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
+    i18n: { language: 'en', changeLanguage: () => {} },
   }),
 }));
 
-// Mock LanguageSelector
-vi.mock('../components/LanguageSelector', () => ({
+// Mock LanguageSelector to avoid i18n access
+vi.mock('../../components/LanguageSelector', () => ({
   default: () => <div data-testid="language-selector">Language Selector</div>,
 }));
 
@@ -52,8 +53,8 @@ describe('Header Component', () => {
 
   it('renders language selector', () => {
     render(<Header />);
-    
-    expect(screen.getByTestId('language-selector')).toBeInTheDocument();
+    const selectors = screen.getAllByTestId('language-selector');
+    expect(selectors.length).toBeGreaterThan(0);
   });
 
   it('toggles mobile menu when button is clicked', () => {
@@ -98,8 +99,8 @@ describe('Header Component', () => {
     fireEvent.click(mobileMenuButton);
     
     // Find mobile navigation link (this would be in the mobile menu)
-    const homeLink = screen.getByText('Home');
-    fireEvent.click(homeLink);
+    const homeLinks = screen.getAllByText('Home');
+    fireEvent.click(homeLinks[homeLinks.length - 1]);
     
     // Menu should be closed
     expect(mobileMenuButton).toHaveAttribute('aria-expanded', 'false');

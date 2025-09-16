@@ -17,5 +17,12 @@
   "Failed to load analytics": "Error al cargar analítica",
   "Failed to load sentiment": "Error al cargar sentimiento",
   "Failed to load scheduled posts": "Error al cargar publicaciones programadas",
-  "Failed to generate caption": "Error al generar subtítulo"
+  "Failed to generate caption": "Error al generar subtítulo",
+  "Page not found": "Página no encontrada",
+  "404_subtext": "¡Ups! La página que buscas no existe o ha sido movida.",
+  "Go Home": "Ir al inicio",
+  "Contact Support": "Contactar soporte",
+  "Something went wrong": "Algo salió mal",
+  "500_subtext": "Nuestros servidores tienen un problema. Por favor inténtalo más tarde.",
+  "Retry": "Reintentar"
 }

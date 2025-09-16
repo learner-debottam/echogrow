@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 
 interface FeatureCardProps {
@@ -118,13 +119,13 @@ export default function FeaturesSection({ className = '' }: FeaturesSectionProps
             <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('Ready to Transform Your Social Media?')}</h3>
             <p className="text-gray-600 mb-6">{t('Join thousands of creators and businesses growing their audience with AI-powered content.')}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
+              <Link
                 href="/auth/signup"
                 className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 aria-label={t('Start your free trial')}
               >
                 {t('Start Free Trial')}
-              </a>
+              </Link>
               <a
                 href="/pricing"
                 className="bg-gray-100 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"

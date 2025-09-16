@@ -9,7 +9,7 @@ const PLANS: Plan[] = [
 
 export default function BillingPage() {
   const [selectedPlan, setSelectedPlan] = useState<string>(PLANS[0].id);
-  const [status, setStatus] = useState<string | null>(null);
+  const [status] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);

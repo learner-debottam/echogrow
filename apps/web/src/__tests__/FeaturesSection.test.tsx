@@ -1,3 +1,4 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import FeaturesSection from '../components/FeaturesSection';
@@ -80,12 +81,10 @@ describe('FeaturesSection Component', () => {
     expect(featuresSection).toHaveClass(customClass);
   });
 
-  it('renders feature icons', () => {
+  it('renders feature icons (svg present)', () => {
     render(<FeaturesSection />);
-    
-    // Check that SVG icons are rendered (they should be present in the DOM)
-    const svgElements = screen.getAllByRole('img', { hidden: true });
-    expect(svgElements.length).toBeGreaterThan(0);
+    const svgs = document.querySelectorAll('svg');
+    expect(svgs.length).toBeGreaterThan(0);
   });
 
   it('has proper hover effects on feature cards', () => {

@@ -17,5 +17,12 @@
   "Failed to load analytics": "Échec du chargement de l'analytique",
   "Failed to load sentiment": "Échec du chargement du sentiment",
   "Failed to load scheduled posts": "Échec du chargement des publications planifiées",
-  "Failed to generate caption": "Échec de la génération du sous-titre"
+  "Failed to generate caption": "Échec de la génération du sous-titre",
+  "Page not found": "Page introuvable",
+  "404_subtext": "Oups ! La page que vous recherchez n’existe pas ou a été déplacée.",
+  "Go Home": "Aller à l’accueil",
+  "Contact Support": "Contacter le support",
+  "Something went wrong": "Un problème est survenu",
+  "500_subtext": "Nos serveurs ont un hic. Veuillez réessayer plus tard.",
+  "Retry": "Réessayer"
 }
